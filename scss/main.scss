@@ -1,0 +1,207 @@
+@import "variables";
+
+// Some Basic Resets
+// Box sizing border box so that box sizing is calculated without the padding and borders
+html {
+  box-sizing: border-box;
+}
+
+// Inherit box sizing to all elements
+*, *:before, *:after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-size: 18px;
+  font-family: $main-font;
+  color: $medium-grey;
+}
+
+//Some heading font sizes and mobile responsive
+h1 {
+  font-size: 18px;
+}
+
+h2 {
+  font-size: 26px;
+}
+
+h1, h2, h3 {
+  color: #fd5765;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 26px;
+  }
+  h2 {
+    font-size: 46px;
+  }
+
+}
+
+//Basic container class
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.col-1 {
+  width: 100%;
+}
+
+//Basic header styling using flexbox
+header {
+  .banner {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  //Navbar styling
+  nav {
+    background: $light-grey;
+    padding: 10px 0;
+    width: 100%;
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+    }
+
+  }
+
+  //Hamburger button styling
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    //Remove margin on first one so it sits center vertically
+    span:not(:first-child) {
+      margin-top: 4px;
+    }
+
+    span {
+      width: 25px;
+      height: 3px;
+      background: $dark-blue;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+//Wrapper settings position relative so it can move when nav slides in
+.wrapper {
+  position: relative;
+  left: 0;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+
+  &.nav-open {
+    left: 350px;
+  }
+}
+
+//Push menu code
+//position absolutely offscreen
+.push-nav {
+  width: 350px;
+  position: absolute;
+  background: $dark-blue;
+  top: 0;
+  bottom: 0;
+  left: -350px;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+
+  h3 {
+    padding: 15px 20px;
+  }
+
+  //style close nav icon
+  .close-nav {
+    font-size: 38px;
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    display: block;
+    z-index: 2;
+    text-decoration: none;
+    color: #FFF;
+    font-weight: 200;
+  }
+
+  &.open {
+    left: 0;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    padding-left: 0;
+
+    //remove default link styling and make links blocks to click on and for padding
+    a {
+      text-decoration: none;
+      display: block;
+      width: 100%;
+      padding: 15px;
+      color: #FFF;
+      position: relative;
+
+      &:hover {
+        background: $pink;
+      }
+    }
+  }
+
+  .dropdown {
+    height: 0;
+    overflow: hidden;
+    background-color: $dark-grey;
+    transition: all 0.3s;
+  }
+
+  .dropdown-link {
+    position: relative;
+
+    .dropdown-icon {
+      transition: all 0.3s;
+    }
+
+    //When dropdown is open expand it and rotate the close button
+    &.dropdown-open {
+      .dropdown {
+        height: auto;
+      }
+
+      .dropdown-icon {
+        transform: rotate(135deg) translateX(-14px) translateY(11px);
+        font-size: 28px;
+      }
+    }
+  }
+
+  .dropdown-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 25px;
+    color: #fff;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+  }
+
+}
+
